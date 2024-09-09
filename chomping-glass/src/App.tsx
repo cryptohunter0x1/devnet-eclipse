@@ -17,9 +17,9 @@ import { toast } from "react-toastify";
 window.Buffer = Buffer;
 
 const PROGRAM_ID = new PublicKey(
-  "ChompZg47TcVy5fk2LxPEpW6SytFYBES5SHoqgrm8A4D"
+  "24Nd4aUNj7LLRwXxLHDUYqNZpGukr6w7ERZMp1ACzP5i"
 );
-const FEE = new PublicKey("EGJnqcxVbhJFJ6Xnchtaw8jmPSvoLXfN2gWsY9Etz5SZ");
+const FEE = new PublicKey("HK8GPL4Ls9rZEvUtMiHmgR4VYLCWQvmGxwnqrgjsQZ5V");
 
 type GameState = {
   eaten: boolean[][];
@@ -273,9 +273,12 @@ function App() {
               setPopupText("You win!");
               setPopupOpen(true);
               break;
-            }
-          }
-          notify(
+            } else if (connection.rpcEndpoint.includes("eclipsenetwork")) {
+  console.log(
+    `https://solscan.io/tx/${signature}?cluster=custom&customUrl=https%3A%2F%2Fstaging-rpc.dev2.eclipsenetwork.xyz`
+  );
+}
+          } notify(
             `${signature}`,
             `https://solscan.io/tx/${signature}`,
             "View on Solscan"
